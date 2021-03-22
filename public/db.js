@@ -1,11 +1,14 @@
-if('serviceWorker' in navigator){
-    window.addEventListener("load", () => {
-        navigator.serviceWorker.register('/service-worker.js', {scope: '/'}).then((reg) => {
-                console.log("Service Worker Registered:" + reg)
-        }).catch((err) => {
-            console.log(err)
-        })
-    })
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js", { scope: "/" })
+      .then((reg) => {
+        console.log("Service Worker Registered:" + reg);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
 }
 
 const indexedDB = window.indexedDB;
@@ -14,27 +17,27 @@ let db;
 // This will create a new database request for our database.
 const req = indexedDB.open("budget", 1);
 
-req.onupgradeneeded = e => {
+req.onupgradeneeded = (e) => {
   // This will create the object store called "pending" and set autoIncrement to true
   const db = e.target.result;
   db.createObjectStore("pending", { autoIncrement: true });
 };
-req.onsuccess = e => {
+req.onsuccess = (e) => {
   db = e.target.result;
   // This will check if app is online before reading from the database
   if (navigator.onLine) {
-    checkDatabase();
+    checkDb();
   }
 };
-req.onerror = e => {
+req.onerror = (e) => {
   console.log(e.target.errorCode);
 };
 
-const saveRec = rec => {
+const saveRec = (rec) => {
   const transaction = db.transaction(["pending"], "readwrite");
   const objStore = transaction.objectStore("pending");
   objStore.add(rec);
-}
+};
 const checkDb = () => {
   const transaction = db.transaction(["pending"], "readwrite");
   const objStore = transaction.objectStore("pending");
@@ -57,6 +60,6 @@ const checkDb = () => {
         });
     }
   };
-}
+};
 // This will listen to check if the app is back online
 window.addEventListener("online", checkDb);

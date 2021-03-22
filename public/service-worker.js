@@ -14,7 +14,7 @@ const appUrlArray = [
 ];
 
 //adding event listener to install cache
-window.addEventListener("install", (e) => {
+self.addEventListener("install", (e) => {
   e.waitUntil(
     caches.open(CACHE).then((cache) => {
       cache.addAll(appUrlArray);
@@ -23,7 +23,7 @@ window.addEventListener("install", (e) => {
 });
 
 //fetches the request and displays cached data
-window.addEventListener("fetch", (e) => {
+self.addEventListener("fetch", (e) => {
   if (e.request.url.includes("/api/")) {
     e.respondWith(
       caches
