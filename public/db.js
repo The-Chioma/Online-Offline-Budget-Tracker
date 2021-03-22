@@ -3,7 +3,7 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("/service-worker.js", { scope: "/" })
       .then((reg) => {
-        console.log("Service Worker Registered:" + reg);
+        console.log("Service worker is now registered:" + reg);
       })
       .catch((err) => {
         console.log(err);
