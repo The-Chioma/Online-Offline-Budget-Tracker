@@ -25,6 +25,5 @@ Giving users a fast and easy way to track their money is important, but allowing
 
 ## Links
 
-  * the URL to the deployed application
-
-  * the URL to the Github repository
+  * [The URL to the deployed application](https://eva-budget-tracker.herokuapp.com/)
+  * [The URL to the Github repository](https://github.com/The-Chioma/Online-Offline-Budget-Tracker)
